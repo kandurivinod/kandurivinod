@@ -1,0 +1,304 @@
+
+
+mysql> select *from school_details;
++------+---------------------+------------+------------+----------------+----------+----------------+
+| id   | name                | url        | phone_no   | principal_name | location | no_of_branches |
++------+---------------------+------------+------------+----------------+----------+----------------+
+|    1 | ushodya high school | ushoday.in | 8547496495 | kumar          | kurnool  |             10 |
++------+---------------------+------------+------------+----------------+----------+----------------+
+1 row in set (0.06 sec)
+
+
+
+
+mysql> select *from student_details;
++------+---------+-----------+--------------+-------------+---------------------+---------+-------+
+| id   | name    | school_id | phone_number | father_name | father_phone_number | section | class |
++------+---------+-----------+--------------+-------------+---------------------+---------+-------+
+|    1 | vinod   |         1 | 8597462563   | murali      | 9647854152          | A       |    10 |
+|    2 | balu    |         1 | 9647856354   | raju        | 9647854163          | b       |    10 |
+|    3 | balaji  |         1 | 9647856398   | kumar       | 6947854163          | b       |    10 |
+|    4 | mounika |         1 | 9647854575   | teja        | 6947859645          | b       |    10 |
+|    5 | sai     |         1 | 9647854845   | prasad      | 6947858945          | b       |    10 |
++------+---------+-----------+--------------+-------------+---------------------+---------+-------+
+5 rows in set (0.06 sec)
+
+
+mysql> create table student_marks(
+    -> uid int,
+    -> english int,
+    -> maths int,
+    -> science int,
+    -> physics int,
+    -> chemistry int,
+    -> hindi int,
+    -> student_id int,
+    -> type_of_exam char(20),
+    -> class_id int,
+    -> school_id int,
+    -> grade char(10),
+    -> percentage int,
+    -> result_status char(10),
+    -> total_marks int);
+Query OK, 0 rows affected (0.25 sec)
+
+mysql> insert into student_marks values(1,79,86,56,43,96,63,1,'half_yearly',10,1,'b',60,'pass',423);
+Query OK, 1 row affected (0.24 sec)
+
+mysql> insert into student_marks values(2,89,68,43,54,58,96,2,'half_yearly',10,1,'b',58,'pass',408);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into student_marks values(3,56,77,43,95,88,92,3,'half_yearly',10,1,'b',70,'pass',451);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into student_marks values(4,45,97,85,56,63,78,4,'half_yearly',10,1,'b',70,'pass',424);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into student_marks values(5,54,78,95,65,43,99,5,'half_yearly',10,1,'b',69,'pass',434);
+Query OK, 1 row affected (0.18 sec)
+
+mysql> select *from student_marks;
++------+---------+-------+---------+---------+-----------+-------+------------+--------------+----------+-----------+-------+------------+---------------+-------------+
+| uid  | english | maths | science | physics | chemistry | hindi | student_id | type_of_exam | class_id | school_id | grade | percentage | result_status | total_marks |
++------+---------+-------+---------+---------+-----------+-------+------------+--------------+----------+-----------+-------+------------+---------------+-------------+
+|    1 |      79 |    86 |      56 |      43 |        96 |    63 |          1 | half_yearly  |       10 |         1 | b     |         60 | pass          |         423 |
+|    2 |      89 |    68 |      43 |      54 |        58 |    96 |          2 | half_yearly  |       10 |         1 | b     |         58 | pass          |         408 |
+|    3 |      56 |    77 |      43 |      95 |        88 |    92 |          3 | half_yearly  |       10 |         1 | b     |         70 | pass          |         451 |
+|    4 |      45 |    97 |      85 |      56 |        63 |    78 |          4 | half_yearly  |       10 |         1 | b     |         70 | pass          |         424 |
+|    5 |      54 |    78 |      95 |      65 |        43 |    99 |          5 | half_yearly  |       10 |         1 | b     |         69 | pass          |         434 |
++------+---------+-------+---------+---------+-----------+-------+------------+--------------+----------+-----------+-------+------------+---------------+-------------+
+5 rows in set (0.00 sec)
+
+
+
+mysql> create table teaching_staff(
+    -> uid int,
+    -> name char(200),
+    -> phone_number varchar(10),
+    -> role char(10),
+    -> school_id int);
+Query OK, 0 rows affected (1.14 sec)
+
+mysql> insert into teaching_staff values(1,'siva',8945671678,'teacher',1);
+Query OK, 1 row affected (0.21 sec)
+
+mysql> insert into teaching_staff values(2,'krishna',9648573563,'teacher',1);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> insert into teaching_staff values(3,'teja',6358947163,'teacher',1);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into teaching_staff values(4,'chandu',9645781235,'teacher',1);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into teaching_staff values(5,'vasu',8974561275,'teacher',1);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into teaching_staff values(6,'kavitha',7496584123,'teacher',1);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select *from teaching_staff;
++------+---------+--------------+---------+-----------+
+| uid  | name    | phone_number | role    | school_id |
++------+---------+--------------+---------+-----------+
+|    1 | siva    | 8945671678   | teacher |         1 |
+|    2 | krishna | 9648573563   | teacher |         1 |
+|    3 | teja    | 6358947163   | teacher |         1 |
+|    4 | chandu  | 9645781235   | teacher |         1 |
+|    5 | vasu    | 8974561275   | teacher |         1 |
+|    6 | kavitha | 7496584123   | teacher |         1 |
++------+---------+--------------+---------+-----------+
+6 rows in set (0.05 sec)
+
+
+
+
+mysql> create table teaching_subjects(
+    -> uid int,
+    -> subjects char(10),
+    -> staff_id int,
+    -> school_id int);
+Query OK, 0 rows affected (0.55 sec)
+
+mysql> insert into teaching_subjects values(1,'english',1,1);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into teaching_subjects values(2,'chemistry',2,1);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into teaching_subjects values(3,'physics',3,1);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into teaching_subjects values(4,'maths',4,1);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into teaching_subjects values(5,'hindi',5,1);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into teaching_subjects values(6,'science',6,1);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> select *from teaching_subjects;
++------+-----------+----------+-----------+
+| uid  | subjects  | staff_id | school_id |
++------+-----------+----------+-----------+
+|    1 | english   |        1 |         1 |
+|    2 | chemistry |        2 |         1 |
+|    3 | physics   |        3 |         1 |
+|    4 | maths     |        4 |         1 |
+|    5 | hindi     |        5 |         1 |
+|    6 | science   |        6 |         1 |
++------+-----------+----------+-----------+
+6 rows in set (0.00 sec)
+
+
+mysql> create table non_teaching_staff(
+    -> uid int,
+    -> name char(200),
+    -> phone_number varchar(10),
+    -> role char(20),
+    -> school_id int);
+Query OK, 0 rows affected (1.27 sec)
+
+mysql> insert into non_teaching_staff values(1,'prasad',6354217896,'petmaster',1);
+Query OK, 1 row affected (0.13 sec)
+
+mysql> insert into non_teaching_staff values(2,'venkatesh',8579634584,'attender',1);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into non_teaching_staff values(3,'hari',6345789214,'librarian',1);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into non_teaching_staff values(4,'hari',8974563217,'watchman',1);
+Query OK, 1 row affected (0.10 sec)
+
+
+mysql> select *from non_teaching_staff;
++------+-----------+--------------+-----------+-----------+
+| uid  | name      | phone_number | role      | school_id |
++------+-----------+--------------+-----------+-----------+
+|    1 | prasad    | 6354217896   | petmaster |         1 |
+|    2 | venkatesh | 8579634584   | attender  |         1 |
+|    3 | hari      | 6345789214   | librarian |         1 |
+|    4 | hari      | 8974563217   | watchman  |         1 |
++------+-----------+--------------+-----------+-----------+
+4 rows in set (0.00 sec)
+                                                
+
+
+
+                                                           joins
+==================================================================================================================
+joins defination: When we retrive the data from more than one table is called joins.
+================
+
+inner join:  The inner join to joing the data from two tables in matching data only reterive.
+============
+                  syntax: select *form <table name1> inner join <table name1> on table name1.column matching name=table name2.column matching name;
+
+mysql> select *from teaching_staff s inner join teaching_subjects t on s.uid=t.uid;
++------+---------+--------------+---------+-----------+------+-----------+----------+-----------+
+| uid  | name    | phone_number | role    | school_id | uid  | subjects  | staff_id | school_id |
++------+---------+--------------+---------+-----------+------+-----------+----------+-----------+
+|    1 | siva    | 8945671678   | teacher |         1 |    1 | english   |        1 |         1 |
+|    2 | krishna | 9648573563   | teacher |         1 |    2 | chemistry |        2 |         1 |
+|    3 | teja    | 6358947163   | teacher |         1 |    3 | physics   |        3 |         1 |
+|    4 | chandu  | 9645781235   | teacher |         1 |    4 | maths     |        4 |         1 |
+|    5 | vasu    | 8974561275   | teacher |         1 |    5 | hindi     |        5 |         1 |
+|    6 | kavitha | 7496584123   | teacher |         1 |    6 | science   |        6 |         1 |
++------+---------+--------------+---------+-----------+------+-----------+----------+-----------+
+6 rows in set (0.04 sec)
+
+===========
+outer join:outer join to reterive the data in tables matching and un matching data from the tables.
+===========
+                   1)Left  outer join
+                   2)Right outer join
+                   3)Full  outer join
+1)Left  outer join: Left outer join is used for reterive the matching data from all tables but un maching data from the left hand side table only and un maching data right hand side values getting null values.
+==================
+                  syntax: select *form <table name1> left outer join <table name2> on table name1.matching column name=table name2.matching column name;
+                  =======
+
+ mysql> select *from teaching_staff s left outer join teaching_subjects t on s.uid=t.uid;
++------+---------+--------------+---------+-----------+------+-----------+----------+-----------+
+| uid  | name    | phone_number | role    | school_id | uid  | subjects  | staff_id | school_id |
++------+---------+--------------+---------+-----------+------+-----------+----------+-----------+
+|    1 | siva    | 8945671678   | teacher |         1 |    1 | english   |        1 |         1 |
+|    2 | krishna | 9648573563   | teacher |         1 |    2 | chemistry |        2 |         1 |
+|    3 | teja    | 6358947163   | teacher |         1 |    3 | physics   |        3 |         1 |
+|    4 | chandu  | 9645781235   | teacher |         1 |    4 | maths     |        4 |         1 |
+|    5 | vasu    | 8974561275   | teacher |         1 |    5 | hindi     |        5 |         1 |
+|    6 | kavitha | 7496584123   | teacher |         1 |    6 | science   |        6 |         1 |
++------+---------+--------------+---------+-----------+------+-----------+----------+-----------+
+6 rows in set (0.03 sec)
+
+2) Right outer join: Rigth outer join is used for reterive the matching data from all tables but un maching data from the right hand side table only and un maching data left hand side values getting null values.
+==================
+                  syntax: select *form <table name1> Right outer join <table name2> on table name1.matching column name=table name2.matching column name;
+                  =======
+
+mysql> select *from teaching_staff s left outer join teaching_subjects t on s.uid=t.uid;
++------+---------+--------------+---------+-----------+------+-----------+----------+-----------+
+| uid  | name    | phone_number | role    | school_id | uid  | subjects  | staff_id | school_id |
++------+---------+--------------+---------+-----------+------+-----------+----------+-----------+
+|    1 | siva    | 8945671678   | teacher |         1 |    1 | english   |        1 |         1 |
+|    2 | krishna | 9648573563   | teacher |         1 |    2 | chemistry |        2 |         1 |
+|    3 | teja    | 6358947163   | teacher |         1 |    3 | physics   |        3 |         1 |
+|    4 | chandu  | 9645781235   | teacher |         1 |    4 | maths     |        4 |         1 |
+|    5 | vasu    | 8974561275   | teacher |         1 |    5 | hindi     |        5 |         1 |
+|    6 | kavitha | 7496584123   | teacher |         1 |    6 | science   |        6 |         1 |
++------+---------+--------------+---------+-----------+------+-----------+----------+-----------+
+6 rows in set (0.03 sec)
+
+3)Full outer join: Full outer join is used for retrive the matching and un matching data from all tables.
+=================
+                   syntax: select *form <table name1> full outer join <table name2> on table name1.matching column name=table name2.matching column name;
+                  =======
+
+Cross join: Cross join is used for combine each row of the first table with each row of second table.
+===========
+                 syntax:select *from <table name1>cross join <table name2>;
+
+
+mysql> select *from student_details s cross join teaching_subjects t;
++------+---------+-----------+--------------+-------------+---------------------+---------+-------+------+-----------+----------+-----------+
+| id   | name    | school_id | phone_number | father_name | father_phone_number | section | class | uid  | subjects  | staff_id | school_id |
++------+---------+-----------+--------------+-------------+---------------------+---------+-------+------+-----------+----------+-----------+
+|    5 | sai     |         1 | 9647854845   | prasad      | 6947858945          | b       |    10 |    1 | english   |        1 |         1 |
+|    4 | mounika |         1 | 9647854575   | teja        | 6947859645          | b       |    10 |    1 | english   |        1 |         1 |
+|    3 | balaji  |         1 | 9647856398   | kumar       | 6947854163          | b       |    10 |    1 | english   |        1 |         1 |
+|    2 | balu    |         1 | 9647856354   | raju        | 9647854163          | b       |    10 |    1 | english   |        1 |         1 |
+|    1 | vinod   |         1 | 8597462563   | murali      | 9647854152          | A       |    10 |    1 | english   |        1 |         1 |
+|    5 | sai     |         1 | 9647854845   | prasad      | 6947858945          | b       |    10 |    2 | chemistry |        2 |         1 |
+|    4 | mounika |         1 | 9647854575   | teja        | 6947859645          | b       |    10 |    2 | chemistry |        2 |         1 |
+|    3 | balaji  |         1 | 9647856398   | kumar       | 6947854163          | b       |    10 |    2 | chemistry |        2 |         1 |
+|    2 | balu    |         1 | 9647856354   | raju        | 9647854163          | b       |    10 |    2 | chemistry |        2 |         1 |
+|    1 | vinod   |         1 | 8597462563   | murali      | 9647854152          | A       |    10 |    2 | chemistry |        2 |         1 |
+|    5 | sai     |         1 | 9647854845   | prasad      | 6947858945          | b       |    10 |    3 | physics   |        3 |         1 |
+|    4 | mounika |         1 | 9647854575   | teja        | 6947859645          | b       |    10 |    3 | physics   |        3 |         1 |
+|    3 | balaji  |         1 | 9647856398   | kumar       | 6947854163          | b       |    10 |    3 | physics   |        3 |         1 |
+|    2 | balu    |         1 | 9647856354   | raju        | 9647854163          | b       |    10 |    3 | physics   |        3 |         1 |
+|    1 | vinod   |         1 | 8597462563   | murali      | 9647854152          | A       |    10 |    3 | physics   |        3 |         1 |
+|    5 | sai     |         1 | 9647854845   | prasad      | 6947858945          | b       |    10 |    4 | maths     |        4 |         1 |
+|    4 | mounika |         1 | 9647854575   | teja        | 6947859645          | b       |    10 |    4 | maths     |        4 |         1 |
+|    3 | balaji  |         1 | 9647856398   | kumar       | 6947854163          | b       |    10 |    4 | maths     |        4 |         1 |
+|    2 | balu    |         1 | 9647856354   | raju        | 9647854163          | b       |    10 |    4 | maths     |        4 |         1 |
+|    1 | vinod   |         1 | 8597462563   | murali      | 9647854152          | A       |    10 |    4 | maths     |        4 |         1 |
+|    5 | sai     |         1 | 9647854845   | prasad      | 6947858945          | b       |    10 |    5 | hindi     |        5 |         1 |
+|    4 | mounika |         1 | 9647854575   | teja        | 6947859645          | b       |    10 |    5 | hindi     |        5 |         1 |
+|    3 | balaji  |         1 | 9647856398   | kumar       | 6947854163          | b       |    10 |    5 | hindi     |        5 |         1 |
+|    2 | balu    |         1 | 9647856354   | raju        | 9647854163          | b       |    10 |    5 | hindi     |        5 |         1 |
+|    1 | vinod   |         1 | 8597462563   | murali      | 9647854152          | A       |    10 |    5 | hindi     |        5 |         1 |
+|    5 | sai     |         1 | 9647854845   | prasad      | 6947858945          | b       |    10 |    6 | science   |        6 |         1 |
+|    4 | mounika |         1 | 9647854575   | teja        | 6947859645          | b       |    10 |    6 | science   |        6 |         1 |
+|    3 | balaji  |         1 | 9647856398   | kumar       | 6947854163          | b       |    10 |    6 | science   |        6 |         1 |
+|    2 | balu    |         1 | 9647856354   | raju        | 9647854163          | b       |    10 |    6 | science   |        6 |         1 |
+|    1 | vinod   |         1 | 8597462563   | murali      | 9647854152          | A       |    10 |    6 | science   |        6 |         1 |
++------+---------+-----------+--------------+-------------+---------------------+---------+-------+------+-----------+----------+-----------+
+30 rows in set (0.00 sec)
+
+mysql>
+
+
+
