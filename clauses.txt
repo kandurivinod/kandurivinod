@@ -1,0 +1,532 @@
+                                                                                  WHERE Clause
+                                                                                  =============
+
+syntax:SELECT column1, column2, FROM table_name WHERE condition;
+=======
+
+The WHERE clause is used to filter records.
+
+It is used to extract only those records that fulfill a specified condition.
+
+examples:
+---------
+
+
+mysql> select phone_number from student_details where id=2;
++--------------+
+| phone_number |
++--------------+
+| 9645782315   |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select 'name' from student_details where id=1;
++------+
+| name |
++------+
+| name |
++------+
+1 row in set (0.00 sec)
+
+mysql> select name from student_details where id=1;
++-------+
+| name  |
++-------+
+| vinod |
++-------+
+1 row in set (0.00 sec)
+
+mysql> select father_name from student_details where id=1;
++-------------+
+| father_name |
++-------------+
+| pavan       |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select father_phone_number from student_details where id=1;
++---------------------+
+| father_phone_number |
++---------------------+
+| 9645786345          |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select section from student_details where id=1;
++---------+
+| section |
++---------+
+| a       |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select *from student_details where id=1;
++------+-------+-----------+--------------+-------------+---------------------+---------+-------+
+| id   | name  | school_id | phone_number | father_name | father_phone_number | section | class |
++------+-------+-----------+--------------+-------------+---------------------+---------+-------+
+|    1 | vinod |         1 | 8574963214   | pavan       | 9645786345          | a       |    10 |
++------+-------+-----------+--------------+-------------+---------------------+---------+-------+
+1 row in set (0.00 sec)
+
+mysql> select phone_number from student_details where id=1;
++--------------+
+| phone_number |
++--------------+
+| 8574963214   |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select phone_number from student_details where id=2;
++--------------+
+| phone_number |
++--------------+
+| 9645782315   |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select phone_number from student_details where id=3;
++--------------+
+| phone_number |
++--------------+
+| 8474125362   |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select phone_number from student_details where id=4;
++--------------+
+| phone_number |
++--------------+
+| 7485961452   |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select phone_number from student_details where id=5;
+Empty set (0.00 sec)
+
+mysql> select name from student_details where id=1;
++-------+
+| name  |
++-------+
+| vinod |
++-------+
+1 row in set (0.00 sec)
+
+mysql> select name from student_details where id=2;
++--------+
+| name   |
++--------+
+| pavani |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select name from student_details where id=3;
++---------+
+| name    |
++---------+
+| mounika |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select name from student_details where id=4;
++------+
+| name |
++------+
+| rafi |
++------+
+1 row in set (0.00 sec)
+
+mysql> select father_name from student_details where id=1;
++-------------+
+| father_name |
++-------------+
+| pavan       |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select father_name from student_details where id=2;
++-------------+
+| father_name |
++-------------+
+| sreenu      |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select father_name from student_details where id=3;
++-------------+
+| father_name |
++-------------+
+| teja        |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select father_name from student_details where id=4;
++-------------+
+| father_name |
++-------------+
+| raju        |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select father_phone_number from student_details where id=1;
++---------------------+
+| father_phone_number |
++---------------------+
+| 9645786345          |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select father_phone_number from student_details where id=2;
++---------------------+
+| father_phone_number |
++---------------------+
+| 8574965415          |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select father_phone_number from student_details where id=3;
++---------------------+
+| father_phone_number |
++---------------------+
+| 6574896154          |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select father_phone_number from student_details where id=4;
++---------------------+
+| father_phone_number |
++---------------------+
+| 6345789218          |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select *from student_details where id=1;
++------+-------+-----------+--------------+-------------+---------------------+---------+-------+
+| id   | name  | school_id | phone_number | father_name | father_phone_number | section | class |
++------+-------+-----------+--------------+-------------+---------------------+---------+-------+
+|    1 | vinod |         1 | 8574963214   | pavan       | 9645786345          | a       |    10 |
++------+-------+-----------+--------------+-------------+---------------------+---------+-------+
+1 row in set (0.00 sec)
+
+mysql> select *from student_details where id=2;
++------+--------+-----------+--------------+-------------+---------------------+---------+-------+
+| id   | name   | school_id | phone_number | father_name | father_phone_number | section | class |
++------+--------+-----------+--------------+-------------+---------------------+---------+-------+
+|    2 | pavani |         1 | 9645782315   | sreenu      | 8574965415          | a       |    10 |
++------+--------+-----------+--------------+-------------+---------------------+---------+-------+
+1 row in set (0.00 sec)
+
+mysql> select *from student_details where id=3;
++------+---------+-----------+--------------+-------------+---------------------+---------+-------+
+| id   | name    | school_id | phone_number | father_name | father_phone_number | section | class |
++------+---------+-----------+--------------+-------------+---------------------+---------+-------+
+|    3 | mounika |         1 | 8474125362   | teja        | 6574896154          | a       |    10 |
++------+---------+-----------+--------------+-------------+---------------------+---------+-------+
+1 row in set (0.00 sec)
+
+mysql> select *from student_details where id=4;
++------+------+-----------+--------------+-------------+---------------------+---------+-------+
+| id   | name | school_id | phone_number | father_name | father_phone_number | section | class |
++------+------+-----------+--------------+-------------+---------------------+---------+-------+
+|    4 | rafi |         1 | 7485961452   | raju        | 6345789218          | a       |    10 |
++------+------+-----------+--------------+-------------+---------------------+---------+-------+
+1 row in set (0.00 sec)
+
+mysql> select *from student_details where id=5;
+Empty set (0.00 sec)
+
+mysql> select name from school_details where id=1;
++----------------------+
+| name                 |
++----------------------+
+| ushodaya high school |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> select url from school_details where id=1;
++-------------+
+| url         |
++-------------+
+| ushodaya.in |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select phone_number from school_details where id=1;
++--------------+
+| phone_number |
++--------------+
+| 9645785465   |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select principal_name from school_details where id=1;
++----------------+
+| principal_name |
++----------------+
+| teja kumar     |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select location from school_details where id=1;
++----------+
+| location |
++----------+
+| nandyal  |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select no_of_branches from school_details where id=1;
++----------------+
+| no_of_branches |
++----------------+
+|             10 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select *from school_details where id=1;
++------+----------------------+-------------+--------------+----------------+----------+----------------+
+| id   | name                 | url         | phone_number | principal_name | location | no_of_branches |
++------+----------------------+-------------+--------------+----------------+----------+----------------+
+|    1 | ushodaya high school | ushodaya.in | 9645785465   | teja kumar     | nandyal  |             10 |
++------+----------------------+-------------+--------------+----------------+----------+----------------+
+1 row in set (0.00 sec)
+
+                                                                                       ORDER BY Keyword
+                                                                                       ================
+
+
+syntax:  SELECT column1, column2 FROM table_name ORDER BY column1, column2, ... ASC|DESC;
+-------    
+The ORDER BY keyword is used to sort the result-set in ascending or descending order.
+
+The ORDER BY keyword sorts the records in ascending order by default. To sort the records in descending order, use the DESC keyword.
+
+mysql> select *from teaching_staff;
++------+---------+--------------+---------+-----------+
+| uid  | name    | phone_number | role    | school_id |
++------+---------+--------------+---------+-----------+
+|    1 | siva    | 9647854136   | teacher |         1 |
+|    2 | krishna | 8574963241   | teacher |         1 |
+|    3 | sreenu  | 96478532     | teacher |         1 |
++------+---------+--------------+---------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select name from teaching_staff order by name;
++---------+
+| name    |
++---------+
+| krishna |
+| siva    |
+| sreenu  |
++---------+
+3 rows in set (0.00 sec)
+
+mysql> select phone_number from teaching_staff order by name;
++--------------+
+| phone_number |
++--------------+
+| 8574963241   |
+| 9647854136   |
+| 96478532     |
++--------------+
+3 rows in set (0.00 sec)
+
+mysql> select *from teaching_subjects;
++------+-----------+----------+-----------+
+| uid  | subjects  | staff_id | school_id |
++------+-----------+----------+-----------+
+|    1 | english   |        2 |         1 |
+|    2 | maths     |        2 |         1 |
+|    3 | physics   |        1 |         1 |
+|    4 | chemistry |        1 |         1 |
+|    5 | hindi     |        3 |         1 |
+|    6 | science   |        3 |         1 |
++------+-----------+----------+-----------+
+6 rows in set (0.04 sec)
+
+mysql> select subjects from teaching_subjects order by subjects;
++-----------+
+| subjects  |
++-----------+
+| chemistry |
+| english   |
+| hindi     |
+| maths     |
+| physics   |
+| science   |
++-----------+
+6 rows in set (0.00 sec)
+
+
+mysql> select staff_id from teaching_subjects order by staff_id desc;
++----------+
+| staff_id |
++----------+
+|        3 |
+|        3 |
+|        2 |
+|        2 |
+|        1 |
+|        1 |
++----------+
+6 rows in set (0.00 sec)
+
+
+mysql> select subjects from teaching_subjects order by subjects desc;
++-----------+
+| subjects  |
++-----------+
+| science   |
+| physics   |
+| maths     |
+| hindi     |
+| english   |
+| chemistry |
++-----------+
+6 rows in set (0.00 sec)
+
+
+
+                                                                       SELECT TOP Clause:
+                                                                       ==================
+syntax: SELECT column_name(s) FROM table_name LIMIT number;
+
+The SELECT TOP clause is used to specify the number of records to return.
+
+The SELECT TOP clause is useful on large tables with thousands of records. Returning a large number of records can impact performance.
+
+examples:
+---------
+
+
+mysql> select *from teaching_staff where name is not null;
++------+---------+--------------+---------+-----------+
+| uid  | name    | phone_number | role    | school_id |
++------+---------+--------------+---------+-----------+
+|    1 | siva    | 9647854136   | teacher |         1 |
+|    2 | krishna | 8574963241   | teacher |         1 |
+|    3 | sreenu  | 96478532     | teacher |         1 |
++------+---------+--------------+---------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select name from teaching_staff limit 2;
++---------+
+| name    |
++---------+
+| siva    |
+| krishna |
++---------+
+2 rows in set (0.00 sec)
+
+mysql> select phone_number from teaching_staff limit 2;
++--------------+
+| phone_number |
++--------------+
+| 9647854136   |
+| 8574963241   |
++--------------+
+2 rows in set (0.00 sec)
+
+mysql>
+                                                           JOINs
+                                                           =====
+      A JOIN clause is used to combine rows from two or more tables, based on a related column between them.
+
+
+1)inner join
+2)left outer join
+3)right outer join
+4)full outer join
+5)cross join
+
+
+inner join:
+-----------
+syntax:  SELECT column_name(s) FROM table1 INNER JOIN table2 ON table1.column_name = table2.column_name;
+
+ The INNER JOIN keyword selects records that have matching values in both tables.
+
+
+example:
+=======
+mysql> select teaching_staff.name,teaching_subjects.subjects from teaching_staff inner join teaching_subjects on teaching_staff.uid=teaching_subjects.uid;
++---------+----------+
+| name    | subjects |
++---------+----------+
+| siva    | english  |
+| krishna | maths    |
+| sreenu  | physics  |
++---------+----------+
+3 rows in set (0.00 sec)
+
+
+2)left outer join :  The LEFT JOIN keyword returns all records from the left table (table1), and the matching records from the right table (table2). 
+                              The result is 0 records from the right side, if there is no match.
+-----------------
+syntax:SELECT column_name(s) FROM table1 LEFT JOIN table2 ON table1.column_name = table2.column_name;
+-------
+
+exmples:
+--------
+mysql> select teaching_staff.name,teaching_subjects.subjects from teaching_staff inner join teaching_subjects on teaching_staff.uid=teaching_subjects.uid;
++---------+----------+
+| name    | subjects |
++---------+----------+
+| siva    | english  |
+| krishna | maths    |
+| sreenu  | physics  |
++---------+----------+
+3 rows in set (0.00 sec)
+
+
+3)rigth outer join:The RIGHT JOIN keyword returns all records from the right table (table2), and the matching records from the left table (table1). 
+-------------------                              The result is 0 records from the left side, if there is no match.
+
+syntax: SELECT column_name(s) FROM table1 RIGHT JOIN table2 ON table1.column_name = table2.column_name;
+--------
+example:
+--------
+mysql> select *from teaching_subjects;
++------+-----------+----------+-----------+
+| uid  | subjects  | staff_id | school_id |
++------+-----------+----------+-----------+
+|    1 | english   |        2 |         1 |
+|    2 | maths     |        2 |         1 |
+|    3 | physics   |        1 |         1 |
+|    4 | chemistry |        1 |         1 |
+|    5 | hindi     |        3 |         1 |
+|    6 | science   |        3 |         1 |
++------+-----------+----------+-----------+
+6 rows in set (0.00 sec)
+
+Cross join: Cross join is used for combine each row of the first table with each row of second table.
+===========
+                 syntax:select *from <table name1>cross join <table name2>;
+example:
+--------
+mysql> select *from teaching_staff cross join teaching_subjects;
++------+---------+--------------+---------+-----------+------+-----------+----------+-----------+
+| uid  | name    | phone_number | role    | school_id | uid  | subjects  | staff_id | school_id |
++------+---------+--------------+---------+-----------+------+-----------+----------+-----------+
+|    3 | sreenu  | 96478532     | teacher |         1 |    1 | english   |        2 |         1 |
+|    2 | krishna | 8574963241   | teacher |         1 |    1 | english   |        2 |         1 |
+|    1 | siva    | 9647854136   | teacher |         1 |    1 | english   |        2 |         1 |
+|    3 | sreenu  | 96478532     | teacher |         1 |    2 | maths     |        2 |         1 |
+|    2 | krishna | 8574963241   | teacher |         1 |    2 | maths     |        2 |         1 |
+|    1 | siva    | 9647854136   | teacher |         1 |    2 | maths     |        2 |         1 |
+|    3 | sreenu  | 96478532     | teacher |         1 |    3 | physics   |        1 |         1 |
+|    2 | krishna | 8574963241   | teacher |         1 |    3 | physics   |        1 |         1 |
+|    1 | siva    | 9647854136   | teacher |         1 |    3 | physics   |        1 |         1 |
+|    3 | sreenu  | 96478532     | teacher |         1 |    4 | chemistry |        1 |         1 |
+|    2 | krishna | 8574963241   | teacher |         1 |    4 | chemistry |        1 |         1 |
+|    1 | siva    | 9647854136   | teacher |         1 |    4 | chemistry |        1 |         1 |
+|    3 | sreenu  | 96478532     | teacher |         1 |    5 | hindi     |        3 |         1 |
+|    2 | krishna | 8574963241   | teacher |         1 |    5 | hindi     |        3 |         1 |
+|    1 | siva    | 9647854136   | teacher |         1 |    5 | hindi     |        3 |         1 |
+|    3 | sreenu  | 96478532     | teacher |         1 |    6 | science   |        3 |         1 |
+|    2 | krishna | 8574963241   | teacher |         1 |    6 | science   |        3 |         1 |
+|    1 | siva    | 9647854136   | teacher |         1 |    6 | science   |        3 |         1 |
++------+---------+--------------+---------+-----------+------+-----------+----------+-----------+
+18 rows in set (0.00 sec)
+
+
+
