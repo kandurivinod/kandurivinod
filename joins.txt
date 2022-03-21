@@ -1,0 +1,786 @@
+Enter password: *********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 84
+Server version: 8.0.27 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| employee           |
+| information_schema |
+| mysql              |
+| nandyal            |
+| performance_schema |
+| pklr               |
+| python             |
+| school             |
+| schools            |
++--------------------+
+9 rows in set (0.63 sec)
+
+mysql> use nandyal;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_nandyal |
++-------------------+
+| school_details    |
+| student_details   |
+| student_marks     |
+| teaching_staff    |
+| teaching_subjects |
++-------------------+
+5 rows in set (0.12 sec)
+
+mysql> select *from school_details;
++------+----------------------+-------------+--------------+----------------+----------+----------------+
+| id   | name                 | url         | phone_number | principal_name | location | no_of_branches |
++------+----------------------+-------------+--------------+----------------+----------+----------------+
+|    1 | ushodaya high school | ushodaya.in | 9645785465   | teja kumar     | nandyal  |             10 |
++------+----------------------+-------------+--------------+----------------+----------+----------------+
+1 row in set (0.05 sec)
+
+mysql> select *from student_details;
++------+---------+-----------+--------------+-------------+---------------------+---------+-------+
+| id   | name    | school_id | phone_number | father_name | father_phone_number | section | class |
++------+---------+-----------+--------------+-------------+---------------------+---------+-------+
+|    1 | vinod   |         1 | 8574963214   | pavan       | 9645786345          | a       |    10 |
+|    2 | pavani  |         1 | 9645782315   | sreenu      | 8574965415          | a       |    10 |
+|    4 | rafi    |         1 | 7485961452   | raju        | 6345789218          | a       |    10 |
+|    3 | mounika |         1 | 8474125362   | teja        | 6574896154          | a       |    10 |
++------+---------+-----------+--------------+-------------+---------------------+---------+-------+
+4 rows in set (0.06 sec)
+
+mysql> select father_name from student_details where father_name=name;
+Empty set (0.00 sec)
+
+mysql> select father_name from student_details where father_name='pavan';
++-------------+
+| father_name |
++-------------+
+| pavan       |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select father_name from student_details where father_name='vinod';
+Empty set (0.00 sec)
+
+mysql> select father_name from student_details where name='vinod';
++-------------+
+| father_name |
++-------------+
+| pavan       |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select father_phone_number from student_details where name='vinod';
++---------------------+
+| father_phone_number |
++---------------------+
+| 9645786345          |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select father_phone_number,father_name from student_details where name='vinod';
++---------------------+-------------+
+| father_phone_number | father_name |
++---------------------+-------------+
+| 9645786345          | pavan       |
++---------------------+-------------+
+1 row in set (0.00 sec)
+
+mysql> select *from student_details where school_id=1;
++------+---------+-----------+--------------+-------------+---------------------+---------+-------+
+| id   | name    | school_id | phone_number | father_name | father_phone_number | section | class |
++------+---------+-----------+--------------+-------------+---------------------+---------+-------+
+|    1 | vinod   |         1 | 8574963214   | pavan       | 9645786345          | a       |    10 |
+|    2 | pavani  |         1 | 9645782315   | sreenu      | 8574965415          | a       |    10 |
+|    4 | rafi    |         1 | 7485961452   | raju        | 6345789218          | a       |    10 |
+|    3 | mounika |         1 | 8474125362   | teja        | 6574896154          | a       |    10 |
++------+---------+-----------+--------------+-------------+---------------------+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select *from student_details where school_id=1;
++------+---------+-----------+--------------+-------------+---------------------+---------+-------+
+| id   | name    | school_id | phone_number | father_name | father_phone_number | section | class |
++------+---------+-----------+--------------+-------------+---------------------+---------+-------+
+|    1 | vinod   |         1 | 8574963214   | pavan       | 9645786345          | a       |    10 |
+|    2 | pavani  |         1 | 9645782315   | sreenu      | 8574965415          | a       |    10 |
+|    4 | rafi    |         1 | 7485961452   | raju        | 6345789218          | a       |    10 |
+|    3 | mounika |         1 | 8474125362   | teja        | 6574896154          | a       |    10 |
++------+---------+-----------+--------------+-------------+---------------------+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select *from student_details where id=1;
++------+-------+-----------+--------------+-------------+---------------------+---------+-------+
+| id   | name  | school_id | phone_number | father_name | father_phone_number | section | class |
++------+-------+-----------+--------------+-------------+---------------------+---------+-------+
+|    1 | vinod |         1 | 8574963214   | pavan       | 9645786345          | a       |    10 |
++------+-------+-----------+--------------+-------------+---------------------+---------+-------+
+1 row in set (0.00 sec)
+
+mysql> select *from student_marks;
++------+--------+-------+---------+---------+-----------+-------+------------+--------------+----------+-----------+-------+------------+---------------+------------+
+| uid  | engils | maths | science | physics | chemistry | hindi | student_id | type_of_exam | class_id | school_id | grade | percentage | result_status | tota_marks |
++------+--------+-------+---------+---------+-----------+-------+------------+--------------+----------+-----------+-------+------------+---------------+------------+
+|    1 |     58 |    79 |      56 |      43 |        57 |    99 |          1 | half_yearly  |       10 |         1 | b     |         60 | pass          |        369 |
+|    2 |     55 |    96 |      78 |      54 |        63 |    89 |          2 | half_yearly  |       10 |         1 | b     |         65 | pass          |        447 |
+|    3 |     56 |    43 |      95 |      52 |        96 |    94 |          3 | half_yearly  |       10 |         1 | b     |         66 | pass          |        452 |
+|    4 |     65 |    85 |      74 |      63 |        78 |    91 |          4 | half_yearly  |       10 |         1 | a     |         70 | pass          |        452 |
++------+--------+-------+---------+---------+-----------+-------+------------+--------------+----------+-----------+-------+------------+---------------+------------+
+4 rows in set (0.03 sec)
+
+mysql> select *from student_details s inner join student_marks m on s.id=m.uid;
++------+---------+-----------+--------------+-------------+---------------------+---------+-------+------+--------+-------+---------+---------+-----------+-------+------------+--------------+----------+-----------+-------+------------+---------------+------------+
+| id   | name    | school_id | phone_number | father_name | father_phone_number | section | class | uid  | engils | maths | science | physics | chemistry | hindi | student_id | type_of_exam | class_id | school_id | grade | percentage | result_status | tota_marks |
++------+---------+-----------+--------------+-------------+---------------------+---------+-------+------+--------+-------+---------+---------+-----------+-------+------------+--------------+----------+-----------+-------+------------+---------------+------------+
+|    1 | vinod   |         1 | 8574963214   | pavan       | 9645786345          | a       |    10 |    1 |     58 |    79 |      56 |      43 |        57 |    99 |          1 | half_yearly  |       10 |         1 | b     |         60 | pass          |        369 |
+|    2 | pavani  |         1 | 9645782315   | sreenu      | 8574965415          | a       |    10 |    2 |     55 |    96 |      78 |      54 |        63 |    89 |          2 | half_yearly  |       10 |         1 | b     |         65 | pass          |        447 |
+|    3 | mounika |         1 | 8474125362   | teja        | 6574896154          | a       |    10 |    3 |     56 |    43 |      95 |      52 |        96 |    94 |          3 | half_yearly  |       10 |         1 | b     |         66 | pass          |        452 |
+|    4 | rafi    |         1 | 7485961452   | raju        | 6345789218          | a       |    10 |    4 |     65 |    85 |      74 |      63 |        78 |    91 |          4 | half_yearly  |       10 |         1 | a     |         70 | pass          |        452 |
++------+---------+-----------+--------------+-------------+---------------------+---------+-------+------+--------+-------+---------+---------+-----------+-------+------------+--------------+----------+-----------+-------+------------+---------------+------------+
+4 rows in set (0.03 sec)
+
+
+mysql> desc student_details;
++---------------------+-------------+------+-----+---------+-------+
+| Field               | Type        | Null | Key | Default | Extra |
++---------------------+-------------+------+-----+---------+-------+
+| id                  | int         | YES  |     | NULL    |       |
+| name                | char(200)   | YES  |     | NULL    |       |
+| school_id           | int         | YES  |     | NULL    |       |
+| phone_number        | varchar(10) | YES  |     | NULL    |       |
+| father_name         | char(200)   | YES  |     | NULL    |       |
+| father_phone_number | varchar(10) | YES  |     | NULL    |       |
+| section             | char(10)    | YES  |     | NULL    |       |
+| class               | int         | YES  |     | NULL    |       |
++---------------------+-------------+------+-----+---------+-------+
+8 rows in set (0.16 sec)
+
+mysql> select *from student_marks;
++------+--------+-------+---------+---------+-----------+-------+------------+--------------+----------+-----------+-------+------------+---------------+------------+
+| uid  | engils | maths | science | physics | chemistry | hindi | student_id | type_of_exam | class_id | school_id | grade | percentage | result_status | tota_marks |
++------+--------+-------+---------+---------+-----------+-------+------------+--------------+----------+-----------+-------+------------+---------------+------------+
+|    1 |     58 |    79 |      56 |      43 |        57 |    99 |          1 | half_yearly  |       10 |         1 | b     |         60 | pass          |        369 |
+|    2 |     55 |    96 |      78 |      54 |        63 |    89 |          2 | half_yearly  |       10 |         1 | b     |         65 | pass          |        447 |
+|    3 |     56 |    43 |      95 |      52 |        96 |    94 |          3 | half_yearly  |       10 |         1 | b     |         66 | pass          |        452 |
+|    4 |     65 |    85 |      74 |      63 |        78 |    91 |          4 | half_yearly  |       10 |         1 | a     |         70 | pass          |        452 |
++------+--------+-------+---------+---------+-----------+-------+------------+--------------+----------+-----------+-------+------------+---------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> desc student_marks;
++---------------+----------+------+-----+---------+-------+
+| Field         | Type     | Null | Key | Default | Extra |
++---------------+----------+------+-----+---------+-------+
+| uid           | int      | YES  |     | NULL    |       |
+| engils        | int      | YES  |     | NULL    |       |
+| maths         | int      | YES  |     | NULL    |       |
+| science       | int      | YES  |     | NULL    |       |
+| physics       | int      | YES  |     | NULL    |       |
+| chemistry     | int      | YES  |     | NULL    |       |
+| hindi         | int      | YES  |     | NULL    |       |
+| student_id    | int      | YES  |     | NULL    |       |
+| type_of_exam  | char(20) | YES  |     | NULL    |       |
+| class_id      | int      | YES  |     | NULL    |       |
+| school_id     | int      | YES  |     | NULL    |       |
+| grade         | char(10) | YES  |     | NULL    |       |
+| percentage    | int      | YES  |     | NULL    |       |
+| result_status | char(10) | YES  |     | NULL    |       |
+| tota_marks    | int      | YES  |     | NULL    |       |
++---------------+----------+------+-----+---------+-------+
+15 rows in set (0.10 sec)
+
+mysql> select uid,engils,maths,science,physics,chemistry,hindi,engils+maths+science+physics+chemistry+hindi from student_marks;
++------+--------+-------+---------+---------+-----------+-------+----------------------------------------------+
+| uid  | engils | maths | science | physics | chemistry | hindi | engils+maths+science+physics+chemistry+hindi |
++------+--------+-------+---------+---------+-----------+-------+----------------------------------------------+
+|    1 |     58 |    79 |      56 |      43 |        57 |    99 |                                          392 |
+|    2 |     55 |    96 |      78 |      54 |        63 |    89 |                                          435 |
+|    3 |     56 |    43 |      95 |      52 |        96 |    94 |                                          436 |
+|    4 |     65 |    85 |      74 |      63 |        78 |    91 |                                          456 |
++------+--------+-------+---------+---------+-----------+-------+----------------------------------------------+
+4 rows in set (0.00 sec)
+
+
+mysql> select uid,engils,maths,science,physics,chemistry,hindi,(engils+maths+science+physics+chemistry+hindi)/6 from student_marks;
++------+--------+-------+---------+---------+-----------+-------+--------------------------------------------------+
+| uid  | engils | maths | science | physics | chemistry | hindi | (engils+maths+science+physics+chemistry+hindi)/6 |
++------+--------+-------+---------+---------+-----------+-------+--------------------------------------------------+
+|    1 |     58 |    79 |      56 |      43 |        57 |    99 |                                          65.3333 |
+|    2 |     55 |    96 |      78 |      54 |        63 |    89 |                                          72.5000 |
+|    3 |     56 |    43 |      95 |      52 |        96 |    94 |                                          72.6667 |
+|    4 |     65 |    85 |      74 |      63 |        78 |    91 |                                          76.0000 |
++------+--------+-------+---------+---------+-----------+-------+--------------------------------------------------+
+4 rows in set (0.04 sec)
+
+mysql> select uid,engils,maths,science,physics,chemistry,hindi,(engils+maths+science+physics+chemistry+hindi)/6 as percentage from student_marks;
++------+--------+-------+---------+---------+-----------+-------+------------+
+| uid  | engils | maths | science | physics | chemistry | hindi | percentage |
++------+--------+-------+---------+---------+-----------+-------+------------+
+|    1 |     58 |    79 |      56 |      43 |        57 |    99 |    65.3333 |
+|    2 |     55 |    96 |      78 |      54 |        63 |    89 |    72.5000 |
+|    3 |     56 |    43 |      95 |      52 |        96 |    94 |    72.6667 |
+|    4 |     65 |    85 |      74 |      63 |        78 |    91 |    76.0000 |
++------+--------+-------+---------+---------+-----------+-------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select uid,engils,maths,science,physics,chemistry,hindi,engils+maths+science+physics+chemistry+hindi as total_marks from student_marks;
++------+--------+-------+---------+---------+-----------+-------+-------------+
+| uid  | engils | maths | science | physics | chemistry | hindi | total_marks |
++------+--------+-------+---------+---------+-----------+-------+-------------+
+|    1 |     58 |    79 |      56 |      43 |        57 |    99 |         392 |
+|    2 |     55 |    96 |      78 |      54 |        63 |    89 |         435 |
+|    3 |     56 |    43 |      95 |      52 |        96 |    94 |         436 |
+|    4 |     65 |    85 |      74 |      63 |        78 |    91 |         456 |
++------+--------+-------+---------+---------+-----------+-------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student_marks;
++------+--------+-------+---------+---------+-----------+-------+------------+--------------+----------+-----------+-------+------------+---------------+------------+
+| uid  | engils | maths | science | physics | chemistry | hindi | student_id | type_of_exam | class_id | school_id | grade | percentage | result_status | tota_marks |
++------+--------+-------+---------+---------+-----------+-------+------------+--------------+----------+-----------+-------+------------+---------------+------------+
+|    1 |     58 |    79 |      56 |      43 |        57 |    99 |          1 | half_yearly  |       10 |         1 | b     |         60 | pass          |        369 |
+|    2 |     55 |    96 |      78 |      54 |        63 |    89 |          2 | half_yearly  |       10 |         1 | b     |         65 | pass          |        447 |
+|    3 |     56 |    43 |      95 |      52 |        96 |    94 |          3 | half_yearly  |       10 |         1 | b     |         66 | pass          |        452 |
+|    4 |     65 |    85 |      74 |      63 |        78 |    91 |          4 | half_yearly  |       10 |         1 | a     |         70 | pass          |        452 |
++------+--------+-------+---------+---------+-----------+-------+------------+--------------+----------+-----------+-------+------------+---------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select uid,engils,maths,science,physics,chemistry,hindi,engils+maths+science+physics+chemistry+hindi as total_marks from student_marks;
++------+--------+-------+---------+---------+-----------+-------+-------------+
+| uid  | engils | maths | science | physics | chemistry | hindi | total_marks |
++------+--------+-------+---------+---------+-----------+-------+-------------+
+|    1 |     58 |    79 |      56 |      43 |        57 |    99 |         392 |
+|    2 |     55 |    96 |      78 |      54 |        63 |    89 |         435 |
+|    3 |     56 |    43 |      95 |      52 |        96 |    94 |         436 |
+|    4 |     65 |    85 |      74 |      63 |        78 |    91 |         456 |
++------+--------+-------+---------+---------+-----------+-------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> select uid,engils,maths,science,physics,chemistry,hindi,(engils+maths+science+physics+chemistry+hindi)/6 as percentage from student_marks;
++------+--------+-------+---------+---------+-----------+-------+------------+
+| uid  | engils | maths | science | physics | chemistry | hindi | percentage |
++------+--------+-------+---------+---------+-----------+-------+------------+
+|    1 |     58 |    79 |      56 |      43 |        57 |    99 |    65.3333 |
+|    2 |     55 |    96 |      78 |      54 |        63 |    89 |    72.5000 |
+|    3 |     56 |    43 |      95 |      52 |        96 |    94 |    72.6667 |
+|    4 |     65 |    85 |      74 |      63 |        78 |    91 |    76.0000 |
++------+--------+-------+---------+---------+-----------+-------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select uid,engils,maths,science,physics,chemistry,hindi,round((engils+maths+science+physics+chemistry+hindi)/6,2) as percentage from student_marks;
++------+--------+-------+---------+---------+-----------+-------+------------+
+| uid  | engils | maths | science | physics | chemistry | hindi | percentage |
++------+--------+-------+---------+---------+-----------+-------+------------+
+|    1 |     58 |    79 |      56 |      43 |        57 |    99 |      65.33 |
+|    2 |     55 |    96 |      78 |      54 |        63 |    89 |      72.50 |
+|    3 |     56 |    43 |      95 |      52 |        96 |    94 |      72.67 |
+|    4 |     65 |    85 |      74 |      63 |        78 |    91 |      76.00 |
++------+--------+-------+---------+---------+-----------+-------+------------+
+4 rows in set (0.04 sec)
+
+mysql> desc student_details;
++---------------------+-------------+------+-----+---------+-------+
+| Field               | Type        | Null | Key | Default | Extra |
++---------------------+-------------+------+-----+---------+-------+
+| id                  | int         | YES  |     | NULL    |       |
+| name                | char(200)   | YES  |     | NULL    |       |
+| school_id           | int         | YES  |     | NULL    |       |
+| phone_number        | varchar(10) | YES  |     | NULL    |       |
+| father_name         | char(200)   | YES  |     | NULL    |       |
+| father_phone_number | varchar(10) | YES  |     | NULL    |       |
+| section             | char(10)    | YES  |     | NULL    |       |
+| class               | int         | YES  |     | NULL    |       |
++---------------------+-------------+------+-----+---------+-------+
+8 rows in set (0.08 sec)
+
+mysql> desc student_marks;
++---------------+----------+------+-----+---------+-------+
+| Field         | Type     | Null | Key | Default | Extra |
++---------------+----------+------+-----+---------+-------+
+| uid           | int      | YES  |     | NULL    |       |
+| engils        | int      | YES  |     | NULL    |       |
+| maths         | int      | YES  |     | NULL    |       |
+| science       | int      | YES  |     | NULL    |       |
+| physics       | int      | YES  |     | NULL    |       |
+| chemistry     | int      | YES  |     | NULL    |       |
+| hindi         | int      | YES  |     | NULL    |       |
+| student_id    | int      | YES  |     | NULL    |       |
+| type_of_exam  | char(20) | YES  |     | NULL    |       |
+| class_id      | int      | YES  |     | NULL    |       |
+| school_id     | int      | YES  |     | NULL    |       |
+| grade         | char(10) | YES  |     | NULL    |       |
+| percentage    | int      | YES  |     | NULL    |       |
+| result_status | char(10) | YES  |     | NULL    |       |
+| tota_marks    | int      | YES  |     | NULL    |       |
++---------------+----------+------+-----+---------+-------+
+15 rows in set (0.00 sec)
+
+mysql> select s.name,m.percentage from student_details s inner join student_marks m on s.id=m.uid;
++---------+------------+
+| name    | percentage |
++---------+------------+
+| vinod   |         60 |
+| pavani  |         65 |
+| mounika |         66 |
+| rafi    |         70 |
++---------+------------+
+4 rows in set (0.02 sec)
+
+mysql> select s.name,m.percentage from student_details s inner join student_marks m on s.id=m.uid where s.name='pavani';
++--------+------------+
+| name   | percentage |
++--------+------------+
+| pavani |         65 |
++--------+------------+
+1 row in set (0.06 sec)
+
+mysql> select s.name,m.tota_marks from student_details s inner join student_marks m on s.id=m.uid;
++---------+------------+
+| name    | tota_marks |
++---------+------------+
+| vinod   |        369 |
+| pavani  |        447 |
+| mounika |        452 |
+| rafi    |        452 |
++---------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select s.name,m.tota_marks from student_details s inner join student_marks m on s.id=m.uid where id=1;
++-------+------------+
+| name  | tota_marks |
++-------+------------+
+| vinod |        369 |
++-------+------------+
+1 row in set (0.00 sec)
+
+mysql> select m.tota_marks from student_details s inner join student_marks m on s.id=m.uid where id=1;
++------------+
+| tota_marks |
++------------+
+|        369 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select m.percentage from student_details s inner join student_marks m on s.id=m.uid where name='vinod';
++------------+
+| percentage |
++------------+
+|         60 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> show tbles;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'tbles' at line 1
+mysql> show tables;
++-------------------+
+| Tables_in_nandyal |
++-------------------+
+| school_details    |
+| student_details   |
+| student_marks     |
+| teaching_staff    |
+| teaching_subjects |
++-------------------+
+5 rows in set (0.06 sec)
+
+mysql> select *from student_details;
++------+---------+-----------+--------------+-------------+---------------------+---------+-------+
+| id   | name    | school_id | phone_number | father_name | father_phone_number | section | class |
++------+---------+-----------+--------------+-------------+---------------------+---------+-------+
+|    1 | vinod   |         1 | 8574963214   | pavan       | 9645786345          | a       |    10 |
+|    2 | pavani  |         1 | 9645782315   | sreenu      | 8574965415          | a       |    10 |
+|    4 | rafi    |         1 | 7485961452   | raju        | 6345789218          | a       |    10 |
+|    3 | mounika |         1 | 8474125362   | teja        | 6574896154          | a       |    10 |
++------+---------+-----------+--------------+-------------+---------------------+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> select *from student_marks;
++------+--------+-------+---------+---------+-----------+-------+------------+--------------+----------+-----------+-------+------------+---------------+------------+
+| uid  | engils | maths | science | physics | chemistry | hindi | student_id | type_of_exam | class_id | school_id | grade | percentage | result_status | tota_marks |
++------+--------+-------+---------+---------+-----------+-------+------------+--------------+----------+-----------+-------+------------+---------------+------------+
+|    1 |     58 |    79 |      56 |      43 |        57 |    99 |          1 | half_yearly  |       10 |         1 | b     |         60 | pass          |        369 |
+|    2 |     55 |    96 |      78 |      54 |        63 |    89 |          2 | half_yearly  |       10 |         1 | b     |         65 | pass          |        447 |
+|    3 |     56 |    43 |      95 |      52 |        96 |    94 |          3 | half_yearly  |       10 |         1 | b     |         66 | pass          |        452 |
+|    4 |     65 |    85 |      74 |      63 |        78 |    91 |          4 | half_yearly  |       10 |         1 | a     |         70 | pass          |        452 |
++------+--------+-------+---------+---------+-----------+-------+------------+--------------+----------+-----------+-------+------------+---------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select *from teaching_staff;
++------+---------+--------------+---------+-----------+
+| uid  | name    | phone_number | role    | school_id |
++------+---------+--------------+---------+-----------+
+|    1 | siva    | 9647854136   | teacher |         1 |
+|    2 | krishna | 8574963241   | teacher |         1 |
+|    3 | sreenu  | 96478532     | teacher |         1 |
++------+---------+--------------+---------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select *from teaching_subjects;
++------+-----------+----------+-----------+
+| uid  | subjects  | staff_id | school_id |
++------+-----------+----------+-----------+
+|    1 | english   |        2 |         1 |
+|    2 | maths     |        2 |         1 |
+|    3 | physics   |        1 |         1 |
+|    4 | chemistry |        1 |         1 |
+|    5 | hindi     |        3 |         1 |
+|    6 | science   |        3 |         1 |
++------+-----------+----------+-----------+
+6 rows in set (0.04 sec)
+
+mysql> select teaching_staff.name from teaching_staff inner join teaching_subjects on teaching_staff.uid=teaching_subjects.uid;
++---------+
+| name    |
++---------+
+| siva    |
+| krishna |
+| sreenu  |
++---------+
+3 rows in set (0.00 sec)
+
+mysql> select teaching_staff.name from teaching_staff inner join teaching_subjects on teaching_staff.uid=teaching_subjects.uid;
++---------+
+| name    |
++---------+
+| siva    |
+| krishna |
+| sreenu  |
++---------+
+3 rows in set (0.00 sec)
+
+mysql> select teaching_staff.name from teaching_staff inner join teaching_subjects on teaching_staff.uid=teaching_subjects.uid where staff_id=2;
++---------+
+| name    |
++---------+
+| siva    |
+| krishna |
++---------+
+2 rows in set (0.00 sec)
+
+mysql> create databases bale;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'databases bale' at line 1
+mysql> create database bale;
+Query OK, 1 row affected (0.52 sec)
+
+mysql> create table vinod(id int,
+    -> name varchar(20),
+    -> add varchar(20),
+    -> phone_number varchar(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'add varchar(20),
+phone_number varchar(20))' at line 3
+mysql> create table vinod(id int,
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> create table vinod(id int,
+    -> select *from teaching_subjects;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select *from teaching_subjects' at line 2
+mysql> create table vinod(id int,
+    -> name varchar(20),
+    -> add varchar(20),
+    -> phone_number varchar(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'add varchar(20),
+phone_number varchar(20))' at line 3
+mysql> use bale;
+Database changed
+mysql> create table vinod(id int,
+    -> name varchar(20),
+    -> add varchar(20),
+    -> phone_number varchar(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'add varchar(20),
+phone_number varchar(20))' at line 3
+mysql> create table vinod(id int,
+    -> name varchar(20),
+    -> adder varchar(20),
+    -> phone_number varchar(20));
+Query OK, 0 rows affected (1.19 sec)
+
+mysql> desc vinod;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| id           | int         | YES  |     | NULL    |       |
+| name         | varchar(20) | YES  |     | NULL    |       |
+| adder        | varchar(20) | YES  |     | NULL    |       |
+| phone_number | varchar(20) | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+4 rows in set (0.07 sec)
+
+mysql> insert into vinod vakues(1,'balu','hyd',9160635849);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'vakues(1,'balu','hyd',9160635849)' at line 1
+mysql> insert into vinod values(1,'balu','hyd',9160635849);
+Query OK, 1 row affected (0.20 sec)
+
+mysql> alter table vinod modify(name varchar(200),adder varcher(200));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(name varchar(200),adder varcher(200))' at line 1
+mysql> alter table vinod modify(name varchar(200));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(name varchar(200))' at line 1
+mysql> alter vinod modify(name varchar(200));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'vinod modify(name varchar(200))' at line 1
+mysql> alter table vinod modify name(name varchar(200));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(name varchar(200))' at line 1
+mysql> alter table vinod modify name(name varchar(200));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(name varchar(200))' at line 1
+mysql> alter table vinod modify column(name varchar(200));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(name varchar(200))' at line 1
+mysql> alter table vinod modify column name varchar(200);
+Query OK, 1 row affected (1.86 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> desc viod;
+ERROR 1146 (42S02): Table 'bale.viod' doesn't exist
+mysql> desc vinod;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| id           | int          | YES  |     | NULL    |       |
+| name         | varchar(200) | YES  |     | NULL    |       |
+| adder        | varchar(20)  | YES  |     | NULL    |       |
+| phone_number | varchar(20)  | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+4 rows in set (0.06 sec)
+
+mysql> alter table vinod modify column adder varchar(200);
+Query OK, 1 row affected (0.99 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> alter table vinod modify column phone_number varchar(200);
+Query OK, 1 row affected (1.90 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> select *from vinod;
++------+------+-------+--------------+
+| id   | name | adder | phone_number |
++------+------+-------+--------------+
+|    1 | balu | hyd   | 9160635849   |
++------+------+-------+--------------+
+1 row in set (0.00 sec)
+
+mysql> drop table vinod;
+Query OK, 0 rows affected (0.44 sec)
+
+mysql> create table emp(
+    -> eno int primary key,
+    -> ename varchar(100) not null,
+    -> esal int,
+    -> city varchar(20));
+Query OK, 0 rows affected (0.99 sec)
+
+mysql> desc emp;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| eno   | int          | NO   | PRI | NULL    |       |
+| ename | varchar(100) | NO   |     | NULL    |       |
+| esal  | int          | YES  |     | NULL    |       |
+| city  | varchar(20)  | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+4 rows in set (0.07 sec)
+
+mysql> alter table emp alter city set default 'knl';
+Query OK, 0 rows affected (0.28 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into emp(eno,ename,esal)values(1,'vinod',10000);
+Query OK, 1 row affected (0.14 sec)
+
+mysql> select *from emp;
++-----+-------+-------+------+
+| eno | ename | esal  | city |
++-----+-------+-------+------+
+|   1 | vinod | 10000 | knl  |
++-----+-------+-------+------+
+1 row in set (0.00 sec)
+
+mysql> alter table emp add check (esal>=10000);
+Query OK, 1 row affected (1.17 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> insert into emp(eno,ename,esal)values(2,balu,9000);
+ERROR 1054 (42S22): Unknown column 'balu' in 'field list'
+mysql> insert into emp(eno,ename,esal)values(2,'balu',9000);
+ERROR 3819 (HY000): Check constraint 'emp_chk_1' is violated.
+mysql> insert into emp(eno,ename,esal)values(2,'balu',11000);
+Query OK, 1 row affected (0.06 sec)
+mysql> insert into emp(eno,ename,esal)values(3,'kumar',20000);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into emp(eno,ename,esal)values(4,'kumar',25000);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select *from emp;
++-----+-------+-------+------+
+| eno | ename | esal  | city |
++-----+-------+-------+------+
+|   1 | vinod | 10000 | knl  |
+|   2 | balu  | 11000 | knl  |
+|   3 | kumar | 20000 | knl  |
+|   4 | kumar | 25000 | knl  |
++-----+-------+-------+------+
+4 rows in set (0.00 sec)
+
+mysql> insert into emp(eno,esal)values(4,25000);
+ERROR 1364 (HY000): Field 'ename' doesn't have a default value
+mysql>
+
+
+
+mysql> select *from student_marks;
+ERROR 1146 (42S02): Table 'bale.student_marks' doesn't exist
+mysql> use nandyal:
+ERROR 1049 (42000): Unknown database 'nandyal:'
+mysql> use nandyal;
+Database changed
+mysql> show tables
+    -> ;
++-------------------+
+| Tables_in_nandyal |
++-------------------+
+| school_details    |
+| student_details   |
+| student_marks     |
+| teaching_staff    |
+| teaching_subjects |
++-------------------+
+5 rows in set (0.04 sec)
+
+mysql> select *from sudrnt_markws;
+ERROR 1146 (42S02): Table 'nandyal.sudrnt_markws' doesn't exist
+mysql> select *from sudent_marks;
+ERROR 1146 (42S02): Table 'nandyal.sudent_marks' doesn't exist
+mysql> select *from student_marks;
++------+--------+-------+---------+---------+-----------+-------+------------+--------------+----------+-----------+-------+------------+---------------+------------+
+| uid  | engils | maths | science | physics | chemistry | hindi | student_id | type_of_exam | class_id | school_id | grade | percentage | result_status | tota_marks |
++------+--------+-------+---------+---------+-----------+-------+------------+--------------+----------+-----------+-------+------------+---------------+------------+
+|    1 |     58 |    79 |      56 |      43 |        57 |    99 |          1 | half_yearly  |       10 |         1 | b     |         60 | pass          |        369 |
+|    2 |     55 |    96 |      78 |      54 |        63 |    89 |          2 | half_yearly  |       10 |         1 | b     |         65 | pass          |        447 |
+|    3 |     56 |    43 |      95 |      52 |        96 |    94 |          3 | half_yearly  |       10 |         1 | b     |         66 | pass          |        452 |
+|    4 |     65 |    85 |      74 |      63 |        78 |    91 |          4 | half_yearly  |       10 |         1 | a     |         70 | pass          |        452 |
++------+--------+-------+---------+---------+-----------+-------+------------+--------------+----------+-----------+-------+------------+---------------+------------+
+4 rows in set (0.11 sec)
+
+mysql> select uid,engils,maths,science,physics,chemistry,hindi,(engils+maths+science+physics+chemistry+hindi) as total_marks;
+ERROR 1054 (42S22): Unknown column 'uid' in 'field list'
+mysql> select uid,engils,maths,science,physics,chemistry,hindi,(engils+maths+science+physics+chemistry+hindi) as total_marks from student_marks;
++------+--------+-------+---------+---------+-----------+-------+-------------+
+| uid  | engils | maths | science | physics | chemistry | hindi | total_marks |
++------+--------+-------+---------+---------+-----------+-------+-------------+
+|    1 |     58 |    79 |      56 |      43 |        57 |    99 |         392 |
+|    2 |     55 |    96 |      78 |      54 |        63 |    89 |         435 |
+|    3 |     56 |    43 |      95 |      52 |        96 |    94 |         436 |
+|    4 |     65 |    85 |      74 |      63 |        78 |    91 |         456 |
++------+--------+-------+---------+---------+-----------+-------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> select uid,engils,maths,science,physics,chemistry,hindi,((engils+maths+science+physics+chemistry+hindi)/6) as precentage from student_marks;
++------+--------+-------+---------+---------+-----------+-------+------------+
+| uid  | engils | maths | science | physics | chemistry | hindi | precentage |
++------+--------+-------+---------+---------+-----------+-------+------------+
+|    1 |     58 |    79 |      56 |      43 |        57 |    99 |    65.3333 |
+|    2 |     55 |    96 |      78 |      54 |        63 |    89 |    72.5000 |
+|    3 |     56 |    43 |      95 |      52 |        96 |    94 |    72.6667 |
+|    4 |     65 |    85 |      74 |      63 |        78 |    91 |    76.0000 |
++------+--------+-------+---------+---------+-----------+-------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select uid,engils,maths,science,physics,chemistry,hindi,(round(engils+maths+science+physics+chemistry+hindi)/6,2) as precentage from student_marks;
+ERROR 1241 (21000): Operand should contain 1 column(s)
+mysql> select uid,engils,maths,science,physics,chemistry,hindi,((engils+maths+science+physics+chemistry+hindi)/6) as precentage from student_marks;
++------+--------+-------+---------+---------+-----------+-------+------------+
+| uid  | engils | maths | science | physics | chemistry | hindi | precentage |
++------+--------+-------+---------+---------+-----------+-------+------------+
+|    1 |     58 |    79 |      56 |      43 |        57 |    99 |    65.3333 |
+|    2 |     55 |    96 |      78 |      54 |        63 |    89 |    72.5000 |
+|    3 |     56 |    43 |      95 |      52 |        96 |    94 |    72.6667 |
+|    4 |     65 |    85 |      74 |      63 |        78 |    91 |    76.0000 |
++------+--------+-------+---------+---------+-----------+-------+------------+
+4 rows in set (0.00 sec)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
